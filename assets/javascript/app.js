@@ -1,9 +1,9 @@
-// let queryUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=a3f03ecf";
+let queryUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=a3f03ecf";
 
-// $.ajax({
-//     url: queryUrl,
-//     method: "GET",
-// })
+$.ajax({
+    url: queryUrl,
+    method: "GET",
+})
 
 let movieArray = []
 
@@ -14,20 +14,31 @@ var settings = {
     "method": "GET",
     "headers": {},
     "data": "{}"
-  }
-  
-  $.ajax(settings).done(function (response) {
+}
+
+$.ajax(settings).done(function (response) {
     console.log(response);
 
-    for (i=0; i<response.results.length; i++){
+    for (i = 0; i < response.results.length; i++) {
 
         let movieObject = response.results[i];
         console.log(movieObject)
 
         movieArray.push(movieObject);
-        // console.log(movieArray)
+
+        let queryUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=a3f03ecf&t=" + movieObject.original_title;
+
+        $.ajax({
+            url: queryUrl,
+            method: "GET",
+        }).done(function (scoreResponse) {
+
+            let movieScore = scoreResponse.Ratings[1].Value;
+            console.log(movieScore);
+        })
+
 
     }
 
     console.log(movieArray)
-  })
+})
