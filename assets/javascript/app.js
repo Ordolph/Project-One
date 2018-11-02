@@ -5,7 +5,11 @@ $.ajax({
     method: "GET",
 })
 
-let movieArray = []
+let movieArray = [];
+
+let scoreArray = [];
+
+let postersArray = []
 
 var settings = {
     "async": true,
@@ -33,9 +37,12 @@ $.ajax(settings).done(function (response) {
             method: "GET",
         }).done(function (scoreResponse) {
 
+            let poster = scoreResponse.Poster;
             let movieScore = scoreResponse.Ratings[1].Value;
-            console.log(movieScore);
-        })
+            
+            scoreArray.push(movieScore);
+
+            postersArray.push(poster);        })
 
 
     }
