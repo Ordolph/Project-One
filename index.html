@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Movie Critic Game</title>
-    <link type="text/stylesheet" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link type="text/stylesheet" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 </head>
@@ -25,19 +25,19 @@
     <div class="bodyContainer">
         <div class="row">
             <div class="col-sm-4">
-                <p id="moviePlot">Movie Plot</p>
+                <h2 id="moviePlot">Movie Plot</h2>
             </div>
             <div class="col-sm-4">
-                <div id="movieTitle">Movie Title
+                <h2 id="movieTitle">Movie Title
 
-                </div>
+                </h2>
                 <div id="poster">
                     <img src="#" alt="moviePoster">
 
                 </div>
             </div>
             <div class="col-sm-4">
-                <p id="actors">Actors</p>
+                <h2 id="actors">Actors</h2>
             </div>
         </div>
         <form class="userInput">
@@ -47,19 +47,12 @@
                     <input type="text" class="form-control" id="userTriviaGuess" placeholder="Stuff">
                     <div class="col-sm-6 mx-auto">
                         <button class="btn btn-primary" type="submit">Submit</button>
-                    </div> 
+                    </div>
                 </div>
             </div>
 
         </form>
     </div>
-
-
-
-
-
-
-
     <script src="assets/javascript/app.js"></script>
 </body>
 
