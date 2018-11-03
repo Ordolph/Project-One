@@ -49,3 +49,8 @@ $.ajax(settings).done(function (response) {
 
     console.log(movieArray)
 })
+
+$("#startButton").click(function () {
+    alert("button clicked");
+
+});
