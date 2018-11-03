@@ -8,7 +8,7 @@
     <title>Movie Critic Game</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">        
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 </head>
@@ -16,33 +16,40 @@
 <body>
     <div class="container">
         <div class="pb-2 mt-5 mb-2">
-        <br>
-        <br>
+            <br>
+            <br>
         </div>
-    <div class="container">
-        <div class="jumbotron vertical-center">
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <h1 class="display-4">Welcome to Movie Trivia!</h1>
+        <div class="container">
+            <div class="jumbotron vertical-center">
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <h1 class="display-4" id="title">Welcome to Movie Trivia! <span class="badge badge-secondary" id="score">0</span></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                        <p class="fluff lead" >See how you rank against fellow movie critics across the globe</p>
+                        <img id="poster">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center mb-5">
+                        <p class="fluff">Your score will be generated based upon how close you are to the movies rotten tomato score</p>
+                        <a class="btn btn-primary btn-lg mt-4" id="startButton" href="#" role="button">Start</a>
+                        <br><br>
+                        <div id="userInput">
+                            <input type="number" class="form-control" id="userTriviaGuess" placeholder="Stuff">
+                            <br><br>
+                            <div class="col-sm-6 mx-auto">
+                                <button class="btn btn-primary" type="submit" id="submitButton">Submit</button>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                        <p class="lead">See how you rank against fellow movie critics across the globe</p>
-                </div>
-            </div>
-            <div class="row">    
-            <div class="col-sm-12 text-center mb-5">
-                <p>Your score will be generated based upon how close you are to the movies rotten tomato score</p>
-                <a class="btn btn-primary btn-lg mt-4" id="startButton" href="#" role="button">Start</a>
-                <br>
-                <br>
-            </div>
-            </div>
-        
-    </div>
-    </div>
-    <!-- <div class="titleContainer">
+            <!-- <div class="titleContainer">
         <div class="row">
             <div class="col-sm-12 text-center">
                 <h1>Title</h1>
@@ -80,7 +87,7 @@
 
         </form>
     </div> -->
-    <script src="assets/javascript/app.js"></script>
+            <script src="assets/javascript/app.js"></script>
 </body>
 
 
