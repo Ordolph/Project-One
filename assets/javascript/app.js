@@ -100,19 +100,15 @@ $(document).ready(function () {
         $.ajax(settings).done(function (response) {
             console.log(response);
 
-            for (i = 0; i < response.results.length; i++) {
+            for (i = 0; i < 10; i++) {
+
+                console.log(response);
 
                 let movieObject = response.results[i];
                 let poster = response.results[i].poster_path;
-                console.log(movieObject)
-
-                movieArray.push(movieObject);
-                postersArray.push(poster);
-
-            
-                let year = movieObject.release_date.slice(0, 4);   
+                let year = movieObject.release_date.slice(0, 4);
                 console.log(year);
-                let queryUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=a3f03ecf&t=" + movieObject.original_title + "&y=" + year; 
+                let queryUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=a3f03ecf&t=" + movieObject.original_title + "&y=" + year;
 
                 $.ajax({
                     url: queryUrl,
@@ -123,14 +119,25 @@ $(document).ready(function () {
 
                     let movieScore = scoreResponse.Ratings[1].Value;
 
-                    scoreArray.push(movieScore);
+                    if (movieScore == null) {
+
+                        i--;
+                    }
+
+                    else {
+
+                        
+                        console.log(poster);
+                        console.log(movieObject)
+
+                        movieArray.push(movieObject);
+                        postersArray.push(poster);
+                        console.log(postersArray);
+                        scoreArray.push(movieScore);
+                    }
                 })
-
-
             }
-
             console.log(movieArray)
         })
     }
-
 });
