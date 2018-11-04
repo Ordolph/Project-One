@@ -11,38 +11,50 @@
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cinzel|Ruda" rel="stylesheet">
+    <link rel="stylesheet" href="woah.css">    
 </head>
 
 <body>
     <div class="container">
         <div class="pb-2 mt-5 mb-2">
-            <br>
-            <br>
+            <div class="row">
+                <div class="col-sm-12">
+                    <img src="assets/image/popcorn.jpg" id="popcorn" class="float-left" alt="Responsive image">
+                    <img src="assets/image/reel.jpg" id="ticket" class="float-right" alt="Responsive image">
+                </div>
+            </div>
         </div>
         <div class="container">
             <div class="jumbotron vertical-center">
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <h1 class="display-4" id="title">Welcome to Movie Trivia! <span class="badge badge-secondary" id="score"></span></h1>
+                        <h1 class="display-4" id="title">Tomato Trivia!
+                            <span class="badge badge-secondary" id="score"></span>
+                        </h1>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <p class="fluff lead" >See how you rank against fellow movie critics across the globe</p>
+                        <p class="fluff lead">See how you rank against fellow movie critics across the globe</p>
                         <img id="poster">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row ustify-content-center">
                     <div class="col-sm-12 text-center mb-5">
                         <p class="fluff">Your score will be generated based upon how close you are to the movies rotten tomato score</p>
-                        <a class="btn btn-primary btn-lg mt-4" id="startButton" href="#" role="button">Start</a>
-                        <br><br>
-                        <div id="userInput">
+                        <a class="btn btn-secondary btn-lg mt-4" id="startButton" href="#" role="button">Start</a>
+                        <br>
+                        <br>
+                        <div class="row">
+                        <div class="col-sm-6 mx-auto" id="userInput">
                             <input type="number" class="form-control" id="userTriviaGuess" placeholder="0 - 100">
-                            <br><br>
+                            <br>
+                            <br>
                             <div class="col-sm-6 mx-auto">
-                                <button class="btn btn-primary" type="submit" id="submitButton">Submit</button>
+                                <button class="btn btn-secondary btn-lg" type="submit" id="submitButton">Submit</button>
                             </div>
+                        </div>
                             <br>
                             <br>
                         </div>
