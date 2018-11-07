@@ -20,7 +20,7 @@ $(document).ready(function () {
     }
 
     getMoviesArrays();
-    console.log(scoreArray)
+    console.log(scoreArray+"Score Array")
 
 
     $("#userInput").children().hide();
@@ -60,12 +60,13 @@ $(document).ready(function () {
         let userGuessFiltered = $("#userTriviaGuess").val().trim();
         let userGuess = parseInt(userGuessFiltered);
         let questionScore = Math.abs(tomatoScore - userGuess);
-        console.log(questionScore);
+        console.log(questionScore+"Question Score");
 
         totalScore = totalScore + questionScore;
 
+
         counter++;
-        console.log(counter);
+        console.log(counter + "counter");
 
         gameStart();
     }
@@ -83,14 +84,22 @@ $(document).ready(function () {
 
     $("#submitButton").on("click", function () {
 
-        if (counter < movieArray.length) {
+        if (counter + 1 < movieArray.length) {
 
-            userSubmit();
+            console.log(movieArray.length + "Movie Array Length");
+            if ($("#userTriviaGuess").val() === "") {
+                $("#userTriviaGuess").val(0);
+                userSubmit();
+            }
+
+            else {
+
+                userSubmit();
+            }
         }
 
         else {
-
-            endScreen();
+            endScreen()
         }
 
     });
@@ -98,11 +107,9 @@ $(document).ready(function () {
     function getMoviesArrays() {
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
+            console.log(response +"Response");
 
             for (i = 0; i < 10; i++) {
-
-                console.log(response);
 
                 let movieObject = response.results[i];
                 let poster = response.results[i].poster_path;
@@ -115,7 +122,7 @@ $(document).ready(function () {
                     method: "GET",
                 }).done(function (scoreResponse) {
 
-                    console.log(scoreResponse);
+                    console.log(scoreResponse+"Score Response");
 
                     let movieScore = scoreResponse.Ratings[1].Value;
 
@@ -126,18 +133,18 @@ $(document).ready(function () {
 
                     else {
 
-                        
-                        console.log(poster);
-                        console.log(movieObject)
+
+                        console.log(poster +"Poster");
+                        console.log(movieObject+"Movie Object")
 
                         movieArray.push(movieObject);
                         postersArray.push(poster);
-                        console.log(postersArray);
+                        console.log(postersArray+"Poseters Array");
                         scoreArray.push(movieScore);
                     }
                 })
             }
-            console.log(movieArray)
+            console.log(movieArray+"Movie Array");
         })
     }
 });
