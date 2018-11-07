@@ -18,6 +18,9 @@ $(document).ready(function () {
 
     // console.log(scoreArray + "Score Array")
 
+    $(document).on("click", "#nameBtn", function(){
+        alert("click!")
+    })
 
     $("#userInput").children().hide();
 
@@ -25,13 +28,15 @@ $(document).ready(function () {
 
         $("#title").text("Finished!");
         $("#poster").hide();
-        $("#userInput").hide();
+        $("#userInput").html("");
         $("#submitButton").hide();
 
-        let nameField = $("<input>").attr("type", "text").attr("class", "form-control").attr("id", "userTriviaGuess").attr("placeholder", "stuff");
-        let nameSubmitBtn = $("<button>").attr("class", "btn btn-primary").attr("id", "nameSubmitBtn");
+        let nameField = $("<input>").attr("type", "text").attr("class", "form-control").attr("id", "userTriviaGuess").attr("placeholder", "Type Your Name Here!");
+        let nameSubmitBtn = $("<button>").attr("class", "btn btn-primary").attr("id", "nameBtn").text("Submit!");
 
         $("#userInput").append([nameField, nameSubmitBtn]);
+
+        
     }
 
     function gameStart() {
