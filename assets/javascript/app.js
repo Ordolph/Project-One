@@ -10,17 +10,13 @@ $(document).ready(function () {
 
     let totalScore = 0;
 
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "https://api.themoviedb.org/3/discover/movie?primary_release_year=2017&page=1&include_video=false&include_adult=false&sort_by=popularity.desc&region=US&language=en-US&api_key=48c01894d7887ea8ffef8f22cfac1d98",
-        "method": "GET",
-        "headers": {},
-        "data": "{}"
-    }
+    let numberVariable = 10;
+
+    let randomPageNumber;
 
     getMoviesArrays();
-    console.log(scoreArray+"Score Array")
+
+    // console.log(scoreArray + "Score Array")
 
 
     $("#userInput").children().hide();
@@ -60,13 +56,13 @@ $(document).ready(function () {
         let userGuessFiltered = $("#userTriviaGuess").val().trim();
         let userGuess = parseInt(userGuessFiltered);
         let questionScore = Math.abs(tomatoScore - userGuess);
-        console.log(questionScore+"Question Score");
+        // console.log(questionScore + "Question Score");
 
         totalScore = totalScore + questionScore;
 
 
         counter++;
-        console.log(counter + "counter");
+        // console.log(counter + "counter");
 
         gameStart();
     }
@@ -86,7 +82,7 @@ $(document).ready(function () {
 
         if (counter + 1 < movieArray.length) {
 
-            console.log(movieArray.length + "Movie Array Length");
+            // console.log(movieArray.length + "Movie Array Length");
             if ($("#userTriviaGuess").val() === "") {
                 $("#userTriviaGuess").val(0);
                 userSubmit();
@@ -106,45 +102,67 @@ $(document).ready(function () {
 
     function getMoviesArrays() {
 
-        $.ajax(settings).done(function (response) {
-            console.log(response +"Response");
+        randomPageNumber = Math.floor(Math.random() * (20 - 1) + 1);
 
-            for (i = 0; i < 10; i++) {
+        // console.log(randomPageNumber + "Page Number");
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://api.themoviedb.org/3/discover/movie?primary_release_year=2017&page=" + randomPageNumber + "&include_video=false&include_adult=false&sort_by=popularity.desc&region=US&language=en-US&api_key=48c01894d7887ea8ffef8f22cfac1d98",
+            "method": "GET",
+            "headers": {},
+            "data": "{}"
+        }
+
+        $.ajax(settings).done(function (response) {
+            // console.log(response + "Response");
+            var loopCounter = 0;
+
+            while (loopCounter < response.length) {
 
                 let movieObject = response.results[i];
                 let poster = response.results[i].poster_path;
                 let year = movieObject.release_date.slice(0, 4);
-                console.log(year);
+                // console.log(year);
                 let queryUrl = "http://www.omdbapi.com/?i=tt3896198&apikey=a3f03ecf&t=" + movieObject.original_title + "&y=" + year;
+
+                loopCounter++;
 
                 $.ajax({
                     url: queryUrl,
                     method: "GET",
                 }).done(function (scoreResponse) {
 
-                    console.log(scoreResponse+"Score Response");
+                    // console.log(scoreResponse + "Score Response");
 
                     let movieScore = scoreResponse.Ratings[1].Value;
 
                     if (movieScore == null) {
 
-                        i--;
+                        numberVariable = numberVariable + 1;
                     }
 
                     else {
 
 
-                        console.log(poster +"Poster");
-                        console.log(movieObject+"Movie Object")
+                        // console.log(poster + "Poster");
+                        // console.log(movieObject + "Movie Object")
 
                         movieArray.push(movieObject);
                         postersArray.push(poster);
-                        console.log(postersArray+"Poseters Array");
+                        // console.log(postersArray + "Poseters Array");
                         scoreArray.push(movieScore);
                     }
                 })
             }
-            console.log(movieArray+"Movie Array");
+
+            if (movieArray.length < 10) {
+                console.log("ALERT!")
+                getMoviesArrays()
+
+            }
+
         })
     }
 });
