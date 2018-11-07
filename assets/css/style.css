@@ -22,7 +22,8 @@ p {
 }
 
 #userTriviaGuess {
-    width: 25%;
+   max-width: 80%;
+   margin-left: 30px;
 }
 
 .jumbotron {
