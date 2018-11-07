@@ -34,6 +34,10 @@ p {
     margin: 0 auto;
 }
 
-#userTriviaGuess {
+#poster {
+    width: 200px;
 
+}
+.noPadding{
+    padding: 0;
 }
