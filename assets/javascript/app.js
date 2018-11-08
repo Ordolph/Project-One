@@ -1,26 +1,37 @@
 $(document).ready(function () {
 
-    let movieArray = [];
+    var movieArray = [];
 
-    let scoreArray = [];
+    var scoreArray = [];
 
-    let postersArray = []
+    var postersArray = []
 
-    let counter = 0;
+    var counter = 0;
 
-    let totalScore = 0;
+    var totalScore = 0;
 
-    let numberVariable = 10;
+    var numberVariable = 10;
 
-    let randomPageNumber;
+    var randomPageNumber;
+
+    var userName;
+
+    // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBrDl0l3QBCTOX4UqXGD5owyLhZWyyzsvw",
+    authDomain: "project-one-526c7.firebaseapp.com",
+    databaseURL: "https://project-one-526c7.firebaseio.com",
+    projectId: "project-one-526c7",
+    storageBucket: "project-one-526c7.appspot.com",
+    messagingSenderId: "775181427990"
+  };
+  firebase.initializeApp(config);
+
+  const database = firebase.database();
 
     getMoviesArrays();
 
     // console.log(scoreArray + "Score Array")
-
-    $(document).on("click", "#nameBtn", function(){
-        alert("click!")
-    })
 
     $("#userInput").children().hide();
 
@@ -31,7 +42,7 @@ $(document).ready(function () {
         $("#userInput").html("");
         $("#submitButton").hide();
 
-        let nameField = $("<input>").attr("type", "text").attr("class", "form-control").attr("id", "userTriviaGuess").attr("placeholder", "Type Your Name Here!");
+        let nameField = $("<input>").attr("type", "text").attr("class", "form-control").attr("id", "userName").attr("placeholder", "Type Your Name Here!");
         let nameSubmitBtn = $("<button>").attr("class", "btn btn-primary").attr("id", "nameBtn").text("Submit!");
 
         $("#userInput").append([nameField, nameSubmitBtn]);
@@ -174,4 +185,16 @@ $(document).ready(function () {
 
         })
     }
+
+    $(document).on("click", "#nameBtn", function () {
+        
+        userName = $("#userName").val();
+
+        database.ref().push({
+            Name: userName,
+            Score: totalScore,
+        });
+
+        
+    });
 });
