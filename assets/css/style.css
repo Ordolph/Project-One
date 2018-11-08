@@ -28,7 +28,7 @@ p {
 
 .jumbotron {
     background: transparent;
-    background-image: url("assets/image/rottenTomato.jpg");
+    /* background-image: url("../image/rottenTomato.jpg"); */
 }
 #ticket {
     margin: 0 auto;

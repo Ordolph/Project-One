@@ -17,17 +17,17 @@ $(document).ready(function () {
     var userName;
 
     // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBrDl0l3QBCTOX4UqXGD5owyLhZWyyzsvw",
-    authDomain: "project-one-526c7.firebaseapp.com",
-    databaseURL: "https://project-one-526c7.firebaseio.com",
-    projectId: "project-one-526c7",
-    storageBucket: "project-one-526c7.appspot.com",
-    messagingSenderId: "775181427990"
-  };
-  firebase.initializeApp(config);
+    var config = {
+        apiKey: "AIzaSyBrDl0l3QBCTOX4UqXGD5owyLhZWyyzsvw",
+        authDomain: "project-one-526c7.firebaseapp.com",
+        databaseURL: "https://project-one-526c7.firebaseio.com",
+        projectId: "project-one-526c7",
+        storageBucket: "project-one-526c7.appspot.com",
+        messagingSenderId: "775181427990"
+    };
+    firebase.initializeApp(config);
 
-  const database = firebase.database();
+    const database = firebase.database();
 
     getMoviesArrays();
 
@@ -47,9 +47,10 @@ $(document).ready(function () {
 
         $("#userInput").append([nameField, nameSubmitBtn]);
 
-        
+
     }
 
+    // Sets game board
     function gameStart() {
 
 
@@ -64,6 +65,7 @@ $(document).ready(function () {
 
     }
 
+    // Takes usersubmitted guess, filters it and calculates score
     function userSubmit() {
 
         let tomatoScoreUnfiletered = scoreArray[counter];
@@ -83,12 +85,48 @@ $(document).ready(function () {
         gameStart();
     }
 
+    // Creates initial framework for leaderboard
+    function createLeaderboard() {
+
+        let leaderboardContainer = $("#leaderboardContainer");
+        let leaderboardTable = $("<table>").attr("id", "leaderboardTable").attr("class", "table");
+        let leaderboardHead = $("<thead>");
+        let leaderboardBody = $("<tbody>").attr("id", "leaderboardBody");
+        let leaderboardFirstRow = $("<tr>");
+        let leaderboardPositionHeading = $("<th>").text("Position").attr("id", "leaderboardPositionHeading").attr("scope", "col");
+        let leaderboardUserNameHeading = $("<th>").text("User Name").attr("id", "leaderboardUserNameHeading").attr("scope", "col");
+        let leaderboardScoreHeading = $("<th>").text("Score").attr("id", "leaderboardScoreHeading").attr("scope", "col");
+        leaderboardFirstRow.append([leaderboardPositionHeading, leaderboardUserNameHeading, leaderboardScoreHeading]);
+        leaderboardHead.append(leaderboardFirstRow);
+        leaderboardTable.append([leaderboardHead, leaderboardBody]);
+        leaderboardContainer.append(leaderboardTable);
+
+
+        database.ref().on("child_added", function (snapshot) {
+
+            let data = snapshot.val();
+            let newRow = $("<tr>");
+            let leaderboardPostion = $("<td>").text("0");
+            let leaderboardName = $("<td>").text(data.Name);
+            let leaderboardScore = $("<td>").text(data.Score);
+
+            newRow.append([leaderboardPostion, leaderboardName, leaderboardScore]);
+            leaderboardBody.append(newRow);
+
+        })
+    };
+
+
+
+
     function nextQuestion() {
 
 
     }
 
-    $("#startButton").on("click", function (event) {
+    $(document).on("click", "#startButton", function (event) {
+
+        console.log("click");
 
         gameStart()
 
@@ -187,7 +225,7 @@ $(document).ready(function () {
     }
 
     $(document).on("click", "#nameBtn", function () {
-        
+
         userName = $("#userName").val();
 
         database.ref().push({
@@ -195,6 +233,8 @@ $(document).ready(function () {
             Score: totalScore,
         });
 
-        
+        createLeaderboard();
+
+
     });
 });
