@@ -18,6 +18,10 @@ $(document).ready(function () {
 
     var timer;
 
+    var leaderboardCounter = 0;
+
+    var flag = 0;
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyBrDl0l3QBCTOX4UqXGD5owyLhZWyyzsvw",
@@ -117,14 +121,27 @@ $(document).ready(function () {
 
         database.ref().orderByChild("Score").on("child_added", function (snapshot) {
 
+            if (flag === 0){
+                leaderboardCounter = "You"
+            }
+
             let data = snapshot.val();
             let newRow = $("<tr>");
-            let leaderboardPostion = $("<td>").text("0");
+            let leaderboardPostion = $("<td>").text(leaderboardCounter);
             let leaderboardName = $("<td>").text(data.Name);
             let leaderboardScore = $("<td>").text(data.Score);
 
             newRow.append([leaderboardPostion, leaderboardName, leaderboardScore]);
             leaderboardBody.append(newRow);
+
+            if (flag === 0){
+                flag = flag + 1;
+                leaderboardCounter = 1;
+            }
+
+            else{
+            leaderboardCounter++;
+            }
         })
     };
 
@@ -243,7 +260,7 @@ $(document).ready(function () {
             Score: totalScore,
         });
 
-        $("#nameField").hide();
+        $("#userName").hide();
         $("#nameBtn").hide();
 
         createLeaderboard();
