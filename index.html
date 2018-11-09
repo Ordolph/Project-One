@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">    
+    <link rel="stylesheet" href="assets/css/animate.css">
     <!-- Firebase Link -->
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
 </head>
@@ -25,7 +27,7 @@
             <div class="jumbotron vertical-center">
                 <div class="row">
                     <div class="col-sm-12 text-center">
-                        <h1 class="display-4" id="title">Welcome to Movie Trivia! <span class="badge badge-secondary"
+                        <h1 class="display-4 animated bounce" id="title">Welcome to Movie Trivia! <span class="badge badge-secondary"
                                 id="score"></span></h1>
                     </div>
                 </div>
@@ -43,11 +45,11 @@
                         <br><br>
                         <div class="row">
                             <div id="userInput">
-                                <div class="col-sm-">
+                                <div class="col-sm">
                                     <input type="number" class="form-control" id="userTriviaGuess" placeholder="0 - 100">
                                     <br><br>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                 </div>
                                 <div class="col-sm-6 mx-auto">
                                     <button class="btn btn-primary" type="submit" id="submitButton">Submit</button>
