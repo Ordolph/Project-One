@@ -53,20 +53,30 @@ $(document).ready(function () {
     // Sets game board
     function gameStart() {
 
-
-
         $(".fluff").hide();
         $("#startButton").hide();
         $("#userInput").children().show();
         $("#title").html(movieArray[counter].original_title + "  " + "<span class='badge badge-secondary' id='score'></span>");
         $("#poster").attr("src", "http://image.tmdb.org/t/p/w185/" + postersArray[counter]);
         $("#score").text(totalScore);
+        $("#userInput").val("");
+
+        counter++;
+
+        setInterval(function(){
+            
+            userSubmit();
+        }, 15000);
 
 
     }
 
     // Takes usersubmitted guess, filters it and calculates score
     function userSubmit() {
+
+        if ($("#userTriviaGuess").val() === "") {
+            $("#userTriviaGuess").val(0);
+        }
 
         let tomatoScoreUnfiletered = scoreArray[counter];
         let tomatoScoreFiltered = tomatoScoreUnfiletered.replace("%", "");
@@ -75,12 +85,7 @@ $(document).ready(function () {
         let userGuess = parseInt(userGuessFiltered);
         let questionScore = Math.abs(tomatoScore - userGuess);
         // console.log(questionScore + "Question Score");
-
         totalScore = totalScore + questionScore;
-
-
-        counter++;
-        // console.log(counter + "counter");
 
         gameStart();
     }
@@ -96,6 +101,7 @@ $(document).ready(function () {
         let leaderboardPositionHeading = $("<th>").text("Position").attr("id", "leaderboardPositionHeading").attr("scope", "col");
         let leaderboardUserNameHeading = $("<th>").text("User Name").attr("id", "leaderboardUserNameHeading").attr("scope", "col");
         let leaderboardScoreHeading = $("<th>").text("Score").attr("id", "leaderboardScoreHeading").attr("scope", "col");
+
         leaderboardFirstRow.append([leaderboardPositionHeading, leaderboardUserNameHeading, leaderboardScoreHeading]);
         leaderboardHead.append(leaderboardFirstRow);
         leaderboardTable.append([leaderboardHead, leaderboardBody]);
@@ -134,18 +140,12 @@ $(document).ready(function () {
 
     $("#submitButton").on("click", function () {
 
-        if (counter + 1 < movieArray.length) {
+        if (counter < movieArray.length) {
 
             // console.log(movieArray.length + "Movie Array Length");
-            if ($("#userTriviaGuess").val() === "") {
-                $("#userTriviaGuess").val(0);
-                userSubmit();
-            }
-
-            else {
 
                 userSubmit();
-            }
+    
         }
 
         else {
@@ -232,6 +232,9 @@ $(document).ready(function () {
             Name: userName,
             Score: totalScore,
         });
+
+        $("#nameField").hide();
+        $("#nameBtn").hide();
 
         createLeaderboard();
 
