@@ -21,9 +21,8 @@ p {
     font-family: 'Ruda', sans-serif;
 }
 
-#userTriviaGuess {
-   max-width: 80%;
-   margin-left: 30px;
+.offset-md-3{
+    margin-left: 43%;
 }
 
 .jumbotron {
