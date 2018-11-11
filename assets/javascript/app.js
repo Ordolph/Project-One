@@ -67,7 +67,7 @@ $(document).ready(function () {
         $("#startButton").hide();
         $("#userInput").children().show();
         $("#title").html(movieArray[counter].original_title + "  " + "<span class='badge badge-secondary' id='score'></span>");
-        $("#poster").attr("src", "http://image.tmdb.org/t/p/w185/" + postersArray[counter]);
+        $("#poster").attr("src", "http://image.tmdb.org/t/p/w185/" + postersArray[counter]).attr("class", "animated bounce");
         $("#score").text(totalScore);
         $("#userInput").val("");
 
